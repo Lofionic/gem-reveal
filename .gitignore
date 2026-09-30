@@ -1,0 +1,13 @@
+.DS_Store
+xcuserdata/
+DerivedData/
+build/
+*.xcscmblueprint
+*.xccheckout
+.build/
+.swiftpm/
+*.rcuserdata
+
+# Blender
+*.blend1
+Blender/_staging/

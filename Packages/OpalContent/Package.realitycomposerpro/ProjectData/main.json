@@ -1,0 +1,13 @@
+{
+  "pathsToIds" : {
+    "\/OpalContent\/Sources\/OpalContent\/OpalContent.rkassets\/Scene.usda" : "C511EB68-44A0-4C2F-9FCE-187E09CD85F3",
+    "\/OpalContent\/Sources\/OpalContent\/OpalContent.rkassets\/Untitled%20Scene.usda" : "9B431F84-F70F-473E-AB88-A03D78298C2E",
+    "OpalContent\/Sources\/OpalContent\/OpalContent.rkassets\/Scene.usda" : "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F"
+  },
+  "projectID" : -1639976220378762871,
+  "uuidToIntID" : {
+    "9B431F84-F70F-473E-AB88-A03D78298C2E" : -5019052728344413667,
+    "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F" : -111774320696164811,
+    "C511EB68-44A0-4C2F-9FCE-187E09CD85F3" : 7809187968219004474
+  }
+}

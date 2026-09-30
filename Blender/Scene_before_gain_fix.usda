@@ -1,0 +1,501 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.100.6)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Material "OpalMaterial"
+    {
+        reorder nameChildren = ["PBRSurface", "Image", "Image_1", "N", "CameraPosition", "Position", "Subtract", "V", "DotProduct", "Edge", "Facing", "Power", "Multiply", "ConstantColor3", "Multiply_1", "Add", "Normalize", "Position_1", "Multiply_2", "Time", "Multiply_3", "Convert", "Add_1", "n", "Multiply_4", "Multiply_5", "hueShift", "HSVAdjust", "Combine3", "Multiply_6", "Convert_1", "Add_2", "Noise3D", "flash", "Multiply_7", "Multiply_8", "gain"]
+        float inputs:FlashStrength = 1.5 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (1837.9059, 569.7224)
+                    int stackingOrderInSubgraph = 638
+                }
+            }
+        )
+        float inputs:FlashSwing = 3 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (1024, 534.7683)
+                    int stackingOrderInSubgraph = 616
+                }
+            }
+        )
+        float inputs:HueRange = 0.25 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (1246.25, 712.7683)
+                    int stackingOrderInSubgraph = 463
+                }
+            }
+        )
+        float inputs:PatchScale = 25 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (142, 944.18823)
+                    int stackingOrderInSubgraph = 536
+                }
+            }
+        )
+        float inputs:RimStrength = 0.6 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (1447, 308.7683)
+                    int stackingOrderInSubgraph = 356
+                }
+            }
+        )
+        float inputs:ShimmerSpeed = 0.25 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (142, 1059.1882)
+                    int stackingOrderInSubgraph = 536
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/OpalMaterial/PBRSurface.outputs:out>
+        token outputs:realitykit:vertex
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:mtlx:surface"]
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (2942.75, 420.25)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 342
+
+        def Shader "PBRSurface"
+        {
+            uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+            float inputs:ambientOcclusion
+            color3f inputs:baseColor.connect = </Root/OpalMaterial/Image.outputs:out>
+            float inputs:clearcoat = 1
+            float3 inputs:clearcoatNormal
+            float inputs:clearcoatRoughness = 0.05
+            color3f inputs:emissiveColor.connect = </Root/OpalMaterial/Add.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:opacity
+            float inputs:opacityThreshold
+            float inputs:roughness = 0.1
+            float inputs:specular
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (2676.5, 420.25)
+            int ui:nodegraph:node:stackingOrder = 342
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = []
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_color3"
+            asset inputs:file = @Gem_BaseColor.png@
+            string inputs:filtertype
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2398.5, 559.5)
+            int ui:nodegraph:node:stackingOrder = 469
+        }
+
+        def Shader "Image_1"
+        {
+            uniform token info:id = "ND_image_color3"
+            asset inputs:file = @Gem_Emission.png@
+            string inputs:filtertype
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1927.5, 326.5)
+            int ui:nodegraph:node:stackingOrder = 455
+        }
+
+        def Shader "N"
+        {
+            uniform token info:id = "ND_normal_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (374.5, 573.69507)
+            int ui:nodegraph:node:stackingOrder = 363
+        }
+
+        def Shader "CameraPosition"
+        {
+            uniform token info:id = "ND_realitykit_cameraposition_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (142, 510.62183)
+            int ui:nodegraph:node:stackingOrder = 545
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (142, 227.26831)
+            int ui:nodegraph:node:stackingOrder = 543
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/OpalMaterial/CameraPosition.outputs:out>
+            float3 inputs:in2.connect = </Root/OpalMaterial/Position.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (374.5, 368.94507)
+            int ui:nodegraph:node:stackingOrder = 306
+        }
+
+        def Shader "V"
+        {
+            uniform token info:id = "ND_normalize_vector3"
+            float3 inputs:in.connect = </Root/OpalMaterial/Subtract.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (569.25, 368.94507)
+            int ui:nodegraph:node:stackingOrder = 306
+        }
+
+        def Shader "DotProduct"
+        {
+            uniform token info:id = "ND_dotproduct_vector3"
+            float3 inputs:in1.connect = </Root/OpalMaterial/Normalize.outputs:out>
+            float3 inputs:in2.connect = </Root/OpalMaterial/V.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (785.75, 471.32007)
+            int ui:nodegraph:node:stackingOrder = 306
+        }
+
+        def Shader "Edge"
+        {
+            uniform token info:id = "ND_subtract_float"
+            float inputs:in1 = 1
+            float inputs:in2.connect = </Root/OpalMaterial/Facing.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1246.25, 358.2683)
+            int ui:nodegraph:node:stackingOrder = 423
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2", "outputs:out"]
+        }
+
+        def Shader "Facing"
+        {
+            uniform token info:id = "ND_clamp_float"
+            float inputs:in.connect = </Root/OpalMaterial/DotProduct.outputs:out>
+            float inputs:low
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1024, 373.7683)
+            int ui:nodegraph:node:stackingOrder = 555
+        }
+
+        def Shader "Power"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/OpalMaterial/Edge.outputs:out>
+            float inputs:in2 = 3
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1447, 200.26831)
+            int ui:nodegraph:node:stackingOrder = 421
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/OpalMaterial/Power.outputs:out>
+            float inputs:in2.connect = </Root/OpalMaterial.inputs:RimStrength>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1674.5, 200.26831)
+            int ui:nodegraph:node:stackingOrder = 306
+        }
+
+        def Shader "ConstantColor3"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.75, 0.9, 1) (
+                colorSpace = "srgb_displayp3"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1674.5, 305.7683)
+            int ui:nodegraph:node:stackingOrder = 313
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            prepend color3f inputs:in1.connect = </Root/OpalMaterial/ConstantColor3.outputs:out>
+            float inputs:in2.connect = </Root/OpalMaterial/Multiply.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (1927.5, 48)
+            int ui:nodegraph:node:stackingOrder = 316
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_color3"
+            color3f inputs:in1.connect = </Root/OpalMaterial/Multiply_1.outputs:out>
+            color3f inputs:in2.connect = </Root/OpalMaterial/Multiply_8.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2398.5, 281)
+            int ui:nodegraph:node:stackingOrder = 467
+        }
+
+        def Shader "Normalize"
+        {
+            uniform token info:id = "ND_normalize_vector3"
+            float3 inputs:in.connect = </Root/OpalMaterial/N.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (569.25, 573.69507)
+            int ui:nodegraph:node:stackingOrder = 365
+        }
+
+        def Shader "Position_1"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (142, 661.19507)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            prepend float3 inputs:in1.connect = </Root/OpalMaterial/Position_1.outputs:out>
+            float inputs:in2.connect = </Root/OpalMaterial.inputs:PatchScale>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (374.5, 802.69165)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (142, 1174.1882)
+            int ui:nodegraph:node:stackingOrder = 539
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/OpalMaterial.inputs:ShimmerSpeed>
+            float inputs:in2.connect = </Root/OpalMaterial/Time.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (374.5, 1116.6882)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "Convert"
+        {
+            uniform token info:id = "ND_convert_float_vector3"
+            prepend float inputs:in.connect = </Root/OpalMaterial/Multiply_3.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (569.25, 1116.6882)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/OpalMaterial/Multiply_2.outputs:out>
+            float3 inputs:in2.connect = </Root/OpalMaterial/Convert.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (785.75, 959.68994)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "n"
+        {
+            uniform token info:id = "ND_noise3d_float"
+            float inputs:amplitude
+            float inputs:pivot
+            float3 inputs:position = (-0.07, 0, 0)
+            float3 inputs:position.connect = </Root/OpalMaterial/Add_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1024, 959.68994)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/OpalMaterial.inputs:HueRange>
+            float inputs:in2.connect = </Root/OpalMaterial/Edge.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1447, 703.2683)
+            int ui:nodegraph:node:stackingOrder = 430
+        }
+
+        def Shader "Multiply_5"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/OpalMaterial/n.outputs:out>
+            float inputs:in2 = 0.1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1246.25, 959.68994)
+            int ui:nodegraph:node:stackingOrder = 536
+        }
+
+        def Shader "hueShift"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/OpalMaterial/Multiply_4.outputs:out>
+            float inputs:in2.connect = </Root/OpalMaterial/Multiply_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1674.5, 831.4791)
+            int ui:nodegraph:node:stackingOrder = 464
+        }
+
+        def Shader "HSVAdjust"
+        {
+            uniform token info:id = "ND_hsvadjust_color3"
+            float3 inputs:amount.connect = </Root/OpalMaterial/Combine3.outputs:out>
+            color3f inputs:in.connect = </Root/OpalMaterial/Image_1.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2197.2144, 616.65656)
+            int ui:nodegraph:node:stackingOrder = 654
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            prepend float inputs:in1.connect = </Root/OpalMaterial/hueShift.outputs:out>
+            float inputs:in2 = 1
+            float inputs:in3 = 1
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (1927.5, 831.4791)
+            int ui:nodegraph:node:stackingOrder = 445
+        }
+
+        def Shader "Multiply_6"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/OpalMaterial/Facing.outputs:out>
+            float inputs:in2.connect = </Root/OpalMaterial.inputs:FlashSwing>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1246.25, 454.2683)
+            int ui:nodegraph:node:stackingOrder = 616
+        }
+
+        def Shader "Convert_1"
+        {
+            uniform token info:id = "ND_convert_float_vector3"
+            float inputs:in.connect = </Root/OpalMaterial/Multiply_6.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (1405.6647, 450.06046)
+            int ui:nodegraph:node:stackingOrder = 640
+        }
+
+        def Shader "Add_2"
+        {
+            uniform token info:id = "ND_add_vector3"
+            float3 inputs:in1.connect = </Root/OpalMaterial/Convert_1.outputs:out>
+            float3 inputs:in2.connect = </Root/OpalMaterial/Multiply_2.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (1466.7501, 578.3499)
+            int ui:nodegraph:node:stackingOrder = 638
+        }
+
+        def Shader "Noise3D"
+        {
+            uniform token info:id = "ND_noise3d_float"
+            float inputs:amplitude
+            float inputs:pivot
+            float3 inputs:position.connect = </Root/OpalMaterial/Add_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1635.353, 680.7573)
+            int ui:nodegraph:node:stackingOrder = 626
+        }
+
+        def Shader "flash"
+        {
+            uniform token info:id = "ND_smoothstep_float"
+            float inputs:high = 0.35
+            float inputs:in.connect = </Root/OpalMaterial/Noise3D.outputs:out>
+            float inputs:low
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1835.4005, 691.7625)
+            int ui:nodegraph:node:stackingOrder = 634
+        }
+
+        def Shader "Multiply_7"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1 = 1.5
+            float inputs:in1.connect = </Root/OpalMaterial.inputs:FlashStrength>
+            float inputs:in2.connect = </Root/OpalMaterial/flash.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1963.8601, 611.6572)
+            int ui:nodegraph:node:stackingOrder = 636
+        }
+
+        def Shader "Multiply_8"
+        {
+            uniform token info:id = "ND_multiply_color3"
+            color3f inputs:in1.connect = </Root/OpalMaterial/Convert_2.outputs:out>
+            color3f inputs:in2.connect = </Root/OpalMaterial/HSVAdjust.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2210.6377, 476.43607)
+            int ui:nodegraph:node:stackingOrder = 645
+        }
+
+        def Shader "gain"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/OpalMaterial/Multiply_7.outputs:out>
+            float inputs:in2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (2032.7865, 604.668)
+            int ui:nodegraph:node:stackingOrder = 652
+        }
+
+        def Shader "Convert_2"
+        {
+            uniform token info:id = "ND_convert_float_color3"
+            prepend float inputs:in.connect = </Root/OpalMaterial/gain.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2134.6982, 389.062)
+            int ui:nodegraph:node:stackingOrder = 657
+        }
+    }
+
+    def "Gem" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @Gem.usdz@
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_materials"
+        {
+            over "Opal"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+            }
+        }
+
+        over "Gem"
+        {
+            over "Gem" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/OpalMaterial> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+    }
+}
+

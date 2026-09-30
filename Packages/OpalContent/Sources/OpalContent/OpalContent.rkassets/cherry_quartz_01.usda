@@ -1,0 +1,59 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+# One gem (cherry_quartz_01): its mesh, bound to its own copy of the shared Opal material.
+# The material references Scene.usda's OpalMaterial, so the graph lives in one place and this
+# file only overrides what differs for this gem: the textures, plus any of the float inputs
+# (RimStrength, HueRange, FlashStrength, FlashSwing, PatchScale, ShimmerSpeed, Roughness) and
+# RimColor. Inputs not overridden here keep the graph's defaults.
+def Xform "Root"
+{
+    def Material "CherryQuartz_01_Material" (
+        references = @Scene.usda@</Root/OpalMaterial>
+    )
+    {
+        asset inputs:BaseColorTexture = @cherry_quartz_01_base.png@
+        asset inputs:EmissionTexture = @cherry_quartz_01_emission.png@
+        float inputs:FlashStrength = 0.6
+        float inputs:FlashSwing = 1.5
+        float inputs:HueRange = 0.03
+        float inputs:PatchScale = 12
+        color3f inputs:RimColor = (1, 0.75, 0.8) (
+            colorSpace = "srgb_displayp3"
+        )
+        float inputs:RimStrength = 0.5
+        float inputs:Roughness = 0.05
+        float inputs:ShimmerSpeed = 0.1
+    }
+
+    def "Gem" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @cherry_quartz_01_model.usdz@
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Gem_cherry_quartz"
+        {
+            over "Gem_cherry_quartz" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/CherryQuartz_01_Material> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+}

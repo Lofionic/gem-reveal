@@ -1,0 +1,128 @@
+{
+  "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F" : {
+    "objectMetadataList" : [
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "opal_01_model",
+        "Gem"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "cherry_quartz_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "amethyst_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "jade_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "opal_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "blue_quartz_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A0F2D1DE-219A-40D6-9CD5-03F78BCB907F",
+        "Root",
+        "amazonite_01"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "C511EB68-44A0-4C2F-9FCE-187E09CD85F3" : {
+    "objectMetadataList" : [
+      [
+        "C511EB68-44A0-4C2F-9FCE-187E09CD85F3",
+        "Root",
+        "OpalMaterial"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C511EB68-44A0-4C2F-9FCE-187E09CD85F3",
+        "Root",
+        "Gem"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C511EB68-44A0-4C2F-9FCE-187E09CD85F3",
+        "Root",
+        "Gem",
+        "Gem"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C511EB68-44A0-4C2F-9FCE-187E09CD85F3",
+        "Root",
+        "Gem",
+        "_materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "C511EB68-44A0-4C2F-9FCE-187E09CD85F3",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}

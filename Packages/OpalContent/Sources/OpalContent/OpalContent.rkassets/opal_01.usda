@@ -1,0 +1,49 @@
+#usda 1.0
+(
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+# One gem: its mesh, bound to its own copy of the shared Opal material.
+# The material references Scene.usda's OpalMaterial, so the graph lives in one place and this
+# file only overrides what differs for this gem: the textures, plus any of the float inputs
+# (RimStrength, HueRange, FlashStrength, FlashSwing, PatchScale, ShimmerSpeed). Inputs not
+# overridden here keep the graph's defaults.
+def Xform "Root"
+{
+    def Material "Opal_01_Material" (
+        references = @Scene.usda@</Root/OpalMaterial>
+    )
+    {
+        asset inputs:BaseColorTexture = @opal_01_base.png@
+        asset inputs:EmissionTexture = @opal_01_emission.png@
+    }
+
+    def "Gem" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @opal_01_model.usdz@
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Gem"
+        {
+            over "Gem" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Opal_01_Material> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+}
